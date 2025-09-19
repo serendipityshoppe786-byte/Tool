@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- ===== SEO & head setup ===== -->
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Grade Calculator – Calculate Your Grade Easily</title>
+  
+  <meta name="description" content="Use our free and responsive Grade Calculator to compute your grade percentage, letter grade, or GPA by entering questions or scores.">
+  <meta name="keywords" content="grade calculator, percentage calculator, exam grade calculation, GPA, free grade tool">
+  <meta name="author" content="Your Name or Company">
+
+  <!-- Open Graph / Social Media -->
+  <meta property="og:title" content="Grade Calculator – Calculate Your Grade Easily">
+  <meta property="og:description" content="Use our free and responsive Grade Calculator to compute your grade percentage, letter grade, or GPA by entering questions or scores.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.yoursite.com/grade-calculator">
+  <meta property="og:image" content="https://www.yoursite.com/images/gradecalculator-preview.png">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Grade Calculator – Calculate Your Grade Easily">
+  <meta name="twitter:description" content="Use our free and responsive Grade Calculator to compute your grade percentage, letter grade, or GPA by entering questions or scores.">
+  <meta name="twitter:image" content="https://www.yoursite.com/images/gradecalculator-preview.png">
+
+  <!-- Favicon -->
+  <link rel="icon" href="/favicon.ico">
+  
+  <!-- CSS – you can move this to a separate file -->
+  <style>
+    /* Reset / base styles */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.5;
+      color: #333;
+      background-color: #f5f5f5;
+      padding: 20px;
+    }
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    form {
+      margin-bottom: 20px;
+    }
+    .form-group {
+      margin-bottom: 15px;
+    }
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+    input[type="number"], select {
+      width: 100%;
+      padding: 8px;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 1rem;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    .results {
+      margin-top: 20px;
+      padding: 15px;
+      background: #e9ecef;
+      border-radius: 4px;
+    }
+    .ad-slot {
+      margin: 20px 0;
+      text-align: center;
+    }
+    /* Responsive */
+    @media (max-width: 600px) {
+      body {
+        padding: 10px;
+      }
+      .container {
+        padding: 15px;
+      }
+      button {
+        width: 100%;
+      }
+    }
+  </style>
+  
+</head>
+<body>
+
+  <div class="container">
+    <h1>Grade Calculator</h1>
+    
+    <!-- AdSense Ad Placeholder (you insert your Ad Unit ID) -->
+    <div class="ad-slot" id="ad-top">
+      <!-- Google AdSense code example -->
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+      <!-- GradeCalculator_Top_Ad -->
+      <ins class="adsbygoogle"
+           style="display:block; text-align:center;"
+           data-ad-layout="in-article"
+           data-ad-format="fluid"
+           data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+           data-ad-slot="YYYYYYYYYYYY"></ins>
+      <script>
+           (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+    </div>
+
+    <form id="gradeCalcForm">
+      <div class="form-group">
+        <label for="totalQuestions">Total Number of Questions:</label>
+        <input type="number" id="totalQuestions" min="1" required>
+      </div>
+      <div class="form-group">
+        <label for="scorePerQuestion">Marks per Question:</label>
+        <input type="number" id="scorePerQuestion" min="0" required>
+      </div>
+      <div class="form-group">
+        <label for="questionsAttempted">Questions Attempted / Correct:</label>
+        <input type="number" id="questionsAttempted" min="0" required>
+      </div>
+      
+      <div class="form-group">
+        <label for="gradingScale">Select Grading Scale:</label>
+        <select id="gradingScale">
+          <option value="percentage">Percentage</option>
+          <option value="letter_us">Letter Grade (US)</option>
+          <option value="gpa_4">GPA (4.0 scale)</option>
+        </select>
+      </div>
+      
+      <button type="submit">Calculate Grade</button>
+    </form>
+    
+    <div class="results" id="results" style="display:none;">
+      <p><strong>Total Marks Possible:</strong> <span id="totalMarks">0</span></p>
+      <p><strong>Your Obtained Marks:</strong> <span id="obtainedMarks">0</span></p>
+      <p><strong>Percentage:</strong> <span id="percent">0%</span></p>
+      <p id="gradeOrGPALine" style="display:none;"><strong>Your Grade / GPA:</strong> <span id="gradeOrGPA">-</span></p>
+    </div>
+    
+    <!-- Another AdSense Ad Placeholder -->
+    <div class="ad-slot" id="ad-bottom">
+      <!-- Google AdSense code example -->
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+      <!-- GradeCalculator_Bottom_Ad -->
+      <ins class="adsbygoogle"
+           style="display:block; text-align:center;"
+           data-ad-layout="in-article"
+           data-ad-format="fluid"
+           data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+           data-ad-slot="ZZZZZZZZZZZZ"></ins>
+      <script>
+           (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+    </div>
+    
+  </div> <!-- .container -->
+
+  <!-- JavaScript for functionality -->
+  <script>
+    document.getElementById('gradeCalcForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+      
+      const totalQ = parseFloat(document.getElementById('totalQuestions').value);
+      const perQ = parseFloat(document.getElementById('scorePerQuestion').value);
+      const attempted = parseFloat(document.getElementById('questionsAttempted').value);
+      const scale = document.getElementById('gradingScale').value;
+      
+      if (attempted > totalQ) {
+        alert('Questions attempted cannot exceed total number of questions.');
+        return;
+      }
+      
+      const totalMarksPossible = totalQ * perQ;
+      const obtained = attempted * perQ;
+      const percentage = (obtained / totalMarksPossible) * 100;
+      
+      // Display
+      document.getElementById('totalMarks').textContent = totalMarksPossible.toFixed(2);
+      document.getElementById('obtainedMarks').textContent = obtained.toFixed(2);
+      document.getElementById('percent').textContent = percentage.toFixed(2) + '%';
+      
+      let gradeOrGPA = '';
+      let showGrade = false;
+      
+      if (scale === 'letter_us') {
+        showGrade = true;
+        if (percentage >= 90) gradeOrGPA = 'A';
+        else if (percentage >= 80) gradeOrGPA = 'B';
+        else if (percentage >= 70) gradeOrGPA = 'C';
+        else if (percentage >= 60) gradeOrGPA = 'D';
+        else gradeOrGPA = 'F';
+      } else if (scale === 'gpa_4') {
+        showGrade = true;
+        // Simple mapping; you can refine
+        if (percentage >= 93) gradeOrGPA = '4.0';
+        else if (percentage >= 90) gradeOrGPA = '3.7';
+        else if (percentage >= 87) gradeOrGPA = '3.3';
+        else if (percentage >= 83) gradeOrGPA = '3.0';
+        else if (percentage >= 80) gradeOrGPA = '2.7';
+        else if (percentage >= 77) gradeOrGPA = '2.3';
+        else if (percentage >= 73) gradeOrGPA = '2.0';
+        else if (percentage >= 70) gradeOrGPA = '1.7';
+        else if (percentage >= 60) gradeOrGPA = '1.0';
+        else gradeOrGPA = '0.0';
+      }
+      
+      if (showGrade) {
+        document.getElementById('gradeOrGPALine').style.display = 'block';
+        document.getElementById('gradeOrGPA').textContent = gradeOrGPA;
+      } else {
+        document.getElementById('gradeOrGPALine').style.display = 'none';
+      }
+      
+      document.getElementById('results').style.display = 'block';
+      
+    });
+  </script>
+</body>
+</html>
